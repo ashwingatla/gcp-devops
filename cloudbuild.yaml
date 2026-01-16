@@ -6,7 +6,7 @@ steps:
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
       - run
-      - --filename=gke_deploy.yaml
+      - --filename=gke-deploy.yaml
       - --image=gcr.io/$PROJECT_ID/gcpdevops
       - --cluster=democluster
       - --namespace=gke-demo
