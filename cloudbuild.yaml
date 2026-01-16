@@ -1,7 +1,13 @@
 steps:
-  - name: 'docker'
+  - name: 'docker_build'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/gcpdevops' ,'.']
-images:
-  - gcr.io/$PROJECT_ID/gcpdevops
-options:
-  logging: CLOUD_LOGGING_ONLY
+  - name: 'docker_push'
+    args: ['push', 'gcr.io/$PROJECT_ID/gcpdevops']
+  - name: 'gke_deploy'
+    args:
+      - run
+      - --filename=gke_deploy.yaml
+      - --image=gcr.io/$PROJECT_ID/gcpdevops
+      - --cluster=democluster
+      - --namespace=gke-demo
+      - --location=us-central1-a

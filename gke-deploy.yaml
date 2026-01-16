@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gke-deployment
+spec:
+  selector:
+    matchLabels:
+      app: deploy
+  template:
+    metadata:
+      labels:
+        app: deploy
+        name: gke-deploy
+    spec:
+      containers:
+        - name: gke-deploy
+          image: gcr.io/gha-gke-autopilot/gcpdevops:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PORT
+              value: '5000'
