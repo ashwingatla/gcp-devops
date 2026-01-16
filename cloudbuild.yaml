@@ -11,3 +11,5 @@ steps:
       - --cluster=democluster
       - --namespace=gke-demo
       - --location=us-central1-a
+options:
+  logging: CLOUD_LOGGING_ONLY
